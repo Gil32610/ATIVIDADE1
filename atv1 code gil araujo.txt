@@ -1,0 +1,220 @@
+//classe NODE
+public class LSENode {
+    private Aluno info;
+    private LSENode prox;
+
+    // Construtor
+    public LSENode(Aluno valor) {
+        this.info = valor;
+    }
+
+    // Métodos GET e SET
+    public void setInfo(Aluno valor) {
+        this.info = valor;
+    }
+
+    public void setProx(LSENode novoProx) {
+        this.prox = novoProx;
+    }
+
+    public Aluno getInfo() {
+        return this.info;
+    }
+
+    public LSENode getProx() {
+        return this.prox;
+    }
+
+}
+
+//classe nodealuno
+public class LSEAluno {
+    private LSENode primeiro;
+
+    // Métodos públicos
+    public boolean isEmpty() {
+        // testa de a lista está vazia
+        if (this.primeiro == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("LISTA VAZIA");
+        } else {
+            LSENode aux = this.primeiro;
+            this.primeiro = null;
+            aux = aux.getProx();
+            this.primeiro = aux;
+        }
+    }
+
+    public void removeLast() {
+        if (isEmpty()) {
+            System.out.println("LISTA VAZIA");
+        } else {
+            LSENode aux = this.primeiro;
+            LSENode previous = aux;
+            while (aux.getProx() != null) {
+                previous = aux;
+                aux = aux.getProx();
+            }
+            previous.setProx(null);
+        }
+    }
+
+    public void insertEnd(Aluno al) {
+        LSENode novo = new LSENode(al);
+        LSENode aux;
+
+        if (isEmpty()) {
+            this.primeiro = novo;
+        } else {
+            aux = this.primeiro;
+            while (aux.getProx() != null) {
+                aux = aux.getProx();
+            }
+            aux.setProx(novo);
+
+        }
+
+    }
+
+    public void inserirAluno(Aluno al) {
+        // insere um novo aluno no início de lista de alunos
+        LSENode novo;
+        novo = new LSENode(al);
+        if (this.isEmpty()) {
+            this.primeiro = novo;
+
+        } else {
+            novo.setProx(this.primeiro);
+            this.primeiro = novo;
+        }
+    }
+
+    public void exibir() {
+        // exibe o conteúdo de todos os nós da lista
+        LSENode aux;
+        if (this.isEmpty()) {
+            System.out.println("Lista vazia!");
+        } else {
+            aux = this.primeiro;
+            while (aux != null) {
+                System.out.println(aux.getInfo());
+                aux = aux.getProx();
+            }
+        }
+    }
+
+}
+
+//classe aluno
+public class Aluno {
+    private String matr;
+    private String nome;
+    private double media;
+    private int faltas;
+    
+    // Construtor
+    public Aluno (String m, String n) {
+        this.matr = m;        
+        this.nome = n;
+    }
+
+    public String getMatricula(){
+        return this.matr;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+    public double getMedia(){
+        return this.media;
+    }
+    public int getFaltas(){
+        return this.faltas;
+    }
+
+    public void setMatricula (String matr){
+        this.matr = matr;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public void setMedia(double media){
+        this.media = media;
+    }
+    public void setFaltas(int faltas){
+        this.faltas = faltas;
+    }
+     
+    public String toString () {
+        return this.matr + " " + this.nome + " " + this.media + " " + this.faltas;
+    }
+    
+}
+//programa para manipular a lista
+import java.util.Scanner;
+
+public class LSETest {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        LSEAluno turma = new LSEAluno();
+        int op;
+        Aluno al;
+        String nome, matr;
+        do {
+            exibeMenu();
+            op = in.nextInt();
+            in.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.print("Informe o nome do aluno: ");
+                    nome = in.nextLine();
+                    System.out.print("Informe a matrícula do aluno: ");
+                    matr = in.nextLine();
+                    al = new Aluno(matr, nome);
+                    turma.inserirAluno(al);
+                    break;
+                case 2:
+                    turma.removeFirst();
+                    break;
+                case 3:
+                    System.out.print("Informe o nome do aluno: ");
+                    nome = in.nextLine();
+                    System.out.print("Informe a matrícula do aluno: ");
+                    matr = in.nextLine();
+                    al = new Aluno(matr, nome);
+                    turma.insertEnd(al);
+                    break;
+                case 4:
+                    turma.removeLast();
+                    break;
+                case 5:
+                    turma.exibir();
+                    break;
+
+                case 0:
+                    System.out.println("FIM");
+                default:
+                    System.out.println("Opção inválida");
+            }
+        } while (op != 0);
+    }
+
+    public static void exibeMenu() {
+        System.out.println("Opções");
+        System.out.println("1 - Inserir um novo aluno no começo da lista");
+        System.out.println("2 - Remover o primeiro aluno da lista");
+        System.out.println("3 - Inserir um novo aluno no final da lista");
+        System.out.println("4 - Remover o último aluno da lista");
+        System.out.println("5 - Exibir todos os alunos da lista");
+        System.out.println("0 - Encerrar programa");
+        System.out.print("Digite a opção desejada: ");
+    }
+
+}
