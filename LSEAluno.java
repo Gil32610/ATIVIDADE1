@@ -110,7 +110,8 @@ public class LSEAluno {
     }
 
     public void exibeAluno(String matr) {
-        Aluno al = new Aluno(primeiro.getInfo().getNome(), matr);
+        Aluno al = primeiro;
+        al.setMatricula(matr);
         LSENode resultado = buscar(al);
         if ( resultado != null) {
             System.out.println(resultado.getInfo());
