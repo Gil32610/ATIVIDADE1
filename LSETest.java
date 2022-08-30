@@ -9,6 +9,7 @@ public class LSETest {
         int op;
         Aluno al;
         String nome, matr;
+        double media;
         do {
             exibeMenu();
             op = in.nextInt();
@@ -23,9 +24,6 @@ public class LSETest {
                     turma.inserirAluno(al);
                     break;
                 case 2:
-                    turma.removeFirst();
-                    break;
-                case 3:
                     System.out.print("Informe o nome do aluno: ");
                     nome = in.nextLine();
                     System.out.print("Informe a matrícula do aluno: ");
@@ -33,13 +31,21 @@ public class LSETest {
                     al = new Aluno(matr, nome);
                     turma.insertEnd(al);
                     break;
-                case 4:
-                    turma.removeLast();
-                    break;
-                case 5:
+                case 3:
                     turma.exibir();
                     break;
-
+                case 4:
+                    System.out.println("Informe a matrícula do aluno:");
+                    matr = in.nextLine();
+                    turma.exibeAluno(matr);
+                    break;
+                case 5:
+                    System.out.println("Informe a matrícula do aluno: ");
+                    matr = in.nextLine();
+                    System.out.println("Informe a média: ");
+                    media = in.nextDouble();
+                    turma.changeGrade(matr, media);
+                    break;
                 case 0:
                     System.out.println("FIM");
                 default:
@@ -51,10 +57,12 @@ public class LSETest {
     public static void exibeMenu() {
         System.out.println("Opções");
         System.out.println("1 - Inserir um novo aluno no começo da lista");
-        System.out.println("2 - Remover o primeiro aluno da lista");
-        System.out.println("3 - Inserir um novo aluno no final da lista");
-        System.out.println("4 - Remover o último aluno da lista");
-        System.out.println("5 - Exibir todos os alunos da lista");
+        System.out.println("2 - Inserir um novo aluno no final da lista");
+        System.out.println("3 - Exibir todos os alunos da lista");
+        System.out.println("4 - Exibir os dados de um aluno");
+        System.out.println("5 - Alterar a média de um aluno");
+        System.out.println("6 - Alterar a quantidade de faltas de um aluno(a)");
+        System.out.println("7 - Remover um aluno(a) da lista");
         System.out.println("0 - Encerrar programa");
         System.out.print("Digite a opção desejada: ");
     }

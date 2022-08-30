@@ -41,16 +41,20 @@ public class LSEAluno {
     public void insertEnd(Aluno al) {
         LSENode novo = new LSENode(al);
         LSENode aux;
-
-        if (isEmpty()) {
-            this.primeiro = novo;
+        LSENode result = this.buscar(al);
+        if (result != null) {
+            System.out.println("Aluno já existe na lista!");
         } else {
-            aux = this.primeiro;
-            while (aux.getProx() != null) {
-                aux = aux.getProx();
-            }
-            aux.setProx(novo);
+            if (isEmpty()) {
+                this.primeiro = novo;
+            } else {
+                aux = this.primeiro;
+                while (aux.getProx() != null) {
+                    aux = aux.getProx();
+                }
+                aux.setProx(novo);
 
+            }
         }
 
     }
@@ -58,13 +62,36 @@ public class LSEAluno {
     public void inserirAluno(Aluno al) {
         // insere um novo aluno no início de lista de alunos
         LSENode novo;
-        novo = new LSENode(al);
-        if (this.isEmpty()) {
-            this.primeiro = novo;
-
+        LSENode result = this.buscar(al);
+        if (result != null) {
+            System.out.println("Aluno já existe na lista!");
         } else {
-            novo.setProx(this.primeiro);
-            this.primeiro = novo;
+            novo = new LSENode(al);
+            if (this.isEmpty()) {
+                this.primeiro = novo;
+
+            } else {
+                novo.setProx(this.primeiro);
+                this.primeiro = novo;
+            }
+        }
+
+    }
+
+    private LSENode buscar(Aluno al) {
+        LSENode aux;
+        if (this.isEmpty()) {
+            return null;
+        } else {
+            aux = this.primeiro;
+            while (aux != null) {
+                if (aux.getInfo().compareTo(al) == 0) {
+                    return aux;
+                } else {
+                    aux = aux.getProx();
+                }
+            }
+            return null;
         }
     }
 
@@ -80,6 +107,29 @@ public class LSEAluno {
                 aux = aux.getProx();
             }
         }
+    }
+
+    public void exibeAluno(String matr) {
+        Aluno al = new Aluno(primeiro.getInfo().getNome(), matr);
+        LSENode resultado = buscar(al);
+        if ( resultado != null) {
+            System.out.println(resultado.getInfo());
+        } else {
+            System.out.println("Aluno não encontrado");
+        }
+    }
+
+    public void changeGrade(String matr, double nota) {
+        Aluno aux = new Aluno();
+        aux.setMatricula(matr);
+        LSENode result = buscar(aux);
+
+        if (result != null) {
+            result.getInfo().setMedia(nota);
+        } else {
+            System.out.println("Aluno não encontrado");
+        }
+
     }
 
 }

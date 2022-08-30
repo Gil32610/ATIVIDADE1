@@ -1,6 +1,6 @@
 package ATIVIDADE1;
 
-public class Aluno {
+public class Aluno implements Comparable <Aluno> {
     private String matr;
     private String nome;
     private double media;
@@ -38,9 +38,15 @@ public class Aluno {
     public void setFaltas(int faltas){
         this.faltas = faltas;
     }
-     
+    @Override 
     public String toString () {
         return this.matr + " " + this.nome + " " + this.media + " " + this.faltas;
     }
+@Override
+public int compareTo(Aluno al){
+int result;
+result = this.getMatricula().compareTo(al.getMatricula());
+return result;
+}
     
 }
