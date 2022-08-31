@@ -162,17 +162,21 @@ public class LSEAluno {
 
         if (this.isEmpty()) {
             System.out.println("Lista vazia!");
+        } else if (this.primeiro.getProx() == null) {
+            this.primeiro = null;
+            System.out.println("Aluno removido!");
         } else {
             LSENode aux = this.primeiro;
-            LSENode previous;
-            while (aux.getInfo().compareTo(al) != 0) {
-                previous = aux;
+            LSENode anterior = aux;
+            while (aux.getProx() != null) {
+                if (aux.getInfo().compareTo(al) == 0) {
+                    break;
+                }
+                anterior = aux;
                 aux = aux.getProx();
-
             }
-            previous.setProx(aux.getProx());
+            anterior.setProx(aux.getProx());
             System.out.println("Aluno removido!");
-
         }
     }
 
