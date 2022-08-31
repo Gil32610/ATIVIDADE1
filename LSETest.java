@@ -44,6 +44,15 @@ public class LSETest {
                     matr = in.nextLine();
                     turma.changeGrade(matr);
                     break;
+                case 6:
+                    System.out.println("Informe a matrícula do aluno: ");
+                    matr = in.nextLine();
+                    turma.changeAbsences(matr);
+                    break;
+                    case 7:
+                    System.out.println("Informe a matrícula do aluno: ");
+                    matr = in.nextLine();
+                    turma.removeAluno(matr);
                 case 0:
                     System.out.println("FIM");
                 default:

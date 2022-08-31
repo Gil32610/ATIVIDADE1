@@ -158,7 +158,22 @@ public class LSEAluno {
     }
 
     public void removeAluno(String matr) {
+        Aluno al = new Aluno(matr);
 
+        if (this.isEmpty()) {
+            System.out.println("Lista vazia!");
+        } else {
+            LSENode aux = this.primeiro;
+            LSENode previous;
+            while (aux.getInfo().compareTo(al) != 0) {
+                previous = aux;
+                aux = aux.getProx();
+
+            }
+            previous.setProx(aux.getProx());
+            System.out.println("Aluno removido!");
+
+        }
     }
 
 }
