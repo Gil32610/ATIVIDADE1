@@ -174,7 +174,7 @@ public class LSEAluno {
                 aux = aux.getProx();
                 this.primeiro = aux;
             } else {
-                while (aux.getProx() != null) {
+                while (aux != null) {
                     if (aux.getInfo().compareTo(al) == 0) {
                         anterior.setProx(aux.getProx());
                         System.out.println("Aluno removido!");
@@ -183,6 +183,7 @@ public class LSEAluno {
                     anterior = aux;
                     aux = aux.getProx();
                 }
+                
             }
 
         }
