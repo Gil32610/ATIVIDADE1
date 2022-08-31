@@ -183,10 +183,28 @@ public class LSEAluno {
                     anterior = aux;
                     aux = aux.getProx();
                 }
-                
+
             }
 
         }
+    }
+
+    public LSEAluno criarCopia() {
+        LSEAluno copy = new LSEAluno();
+
+        if (this.isEmpty()) {
+            System.out.println("LISTA VAZIA");
+            return copy;
+        }
+
+        LSENode aux = this.primeiro;
+        copy.primeiro = aux;
+        while (aux != null) {
+            copy.inserirAluno(aux.getInfo());
+            aux = aux.getProx();
+        }
+
+        return copy;
     }
 
 }
