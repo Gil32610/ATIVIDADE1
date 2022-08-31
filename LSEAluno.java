@@ -165,22 +165,24 @@ public class LSEAluno {
         } else if (this.primeiro.getProx() == null && this.primeiro.getInfo().compareTo(al) == 0) {
             this.primeiro = null;
             System.out.println("Aluno removido!");
-        } else if (this.primeiro.getInfo().compareTo(al) == 0) {
-            LSENode aux = this.primeiro;
-            this.primeiro = null;
-            aux = aux.getProx();
         } else {
             LSENode aux = this.primeiro;
             LSENode anterior = aux;
-
-            while (aux.getProx() != null) {
-                if (aux.getInfo().compareTo(al) == 0) {
-                    anterior.setProx(aux.getProx());
-                    System.out.println("Aluno removido!");
-                    break;
-                }
-                anterior = aux;
+            if (this.primeiro.getInfo().compareTo(al) == 0) {
+                aux = this.primeiro;
+                this.primeiro = null;
                 aux = aux.getProx();
+                this.primeiro = aux;
+            } else {
+                while (aux.getProx() != null) {
+                    if (aux.getInfo().compareTo(al) == 0) {
+                        anterior.setProx(aux.getProx());
+                        System.out.println("Aluno removido!");
+                        break;
+                    }
+                    anterior = aux;
+                    aux = aux.getProx();
+                }
             }
 
         }
