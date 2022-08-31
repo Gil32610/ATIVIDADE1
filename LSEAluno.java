@@ -1,5 +1,7 @@
 package ATIVIDADE1;
 
+import java.util.Scanner;
+
 public class LSEAluno {
     private LSENode primeiro;
 
@@ -27,6 +29,8 @@ public class LSEAluno {
     public void removeLast() {
         if (isEmpty()) {
             System.out.println("LISTA VAZIA");
+        } else if (this.primeiro.getProx() == null) {
+            this.primeiro = null;
         } else {
             LSENode aux = this.primeiro;
             LSENode previous = aux;
@@ -110,26 +114,50 @@ public class LSEAluno {
     }
 
     public void exibeAluno(String matr) {
-        Aluno al = primeiro;
-        al.setMatricula(matr);
-        LSENode resultado = buscar(al);
-        if ( resultado != null) {
-            System.out.println(resultado.getInfo());
+        Aluno al = new Aluno(matr);
+        LSENode result = buscar(al);
+
+        if (result != null) {
+            System.out.println("Informações do Aluno: ");
+            System.out.println(result.getInfo());
         } else {
-            System.out.println("Aluno não encontrado");
+            System.out.println("Aluno não encontrado!");
         }
     }
 
-    public void changeGrade(String matr, double nota) {
-        Aluno aux = new Aluno();
-        aux.setMatricula(matr);
+    public void changeGrade(String matr) {
+        double newGrade;
+        Scanner s = new Scanner(System.in);
+        Aluno aux = new Aluno(matr);
         LSENode result = buscar(aux);
 
         if (result != null) {
-            result.getInfo().setMedia(nota);
+            System.out.println("Informe a média do aluno: ");
+            newGrade = s.nextDouble();
+            result.getInfo().setMedia(newGrade);
+            System.out.println("Média alterada!");
         } else {
             System.out.println("Aluno não encontrado");
         }
+
+    }
+
+    public void changeAbsences(String matr) {
+        Scanner s = new Scanner(System.in);
+        Aluno al = new Aluno(matr);
+        LSENode result = buscar(al);
+        int absent;
+        if (result != null) {
+            System.out.println("Informe o número de ausências: ");
+            absent = s.nextInt();
+            result.getInfo().setFaltas(absent);
+            System.out.println("Faltas alteradas!");
+        } else {
+            System.out.println("Aluno não encontrado.");
+        }
+    }
+
+    public void removeAluno(String matr) {
 
     }
 

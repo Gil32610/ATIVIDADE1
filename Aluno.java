@@ -11,7 +11,9 @@ public class Aluno implements Comparable <Aluno> {
         this.matr = m;        
         this.nome = n;
     }
-
+public Aluno (String matr){
+    this.matr = matr;
+}
     public String getMatricula(){
         return this.matr;
     }

@@ -42,9 +42,7 @@ public class LSETest {
                 case 5:
                     System.out.println("Informe a matrícula do aluno: ");
                     matr = in.nextLine();
-                    System.out.println("Informe a média: ");
-                    media = in.nextDouble();
-                    turma.changeGrade(matr, media);
+                    turma.changeGrade(matr);
                     break;
                 case 0:
                     System.out.println("FIM");
