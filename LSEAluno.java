@@ -186,6 +186,9 @@ public class LSEAluno {
                     anterior = aux;
                     aux = aux.getProx();
                 }
+                if(aux == null){
+                    System.out.println("Aluno não encontrado.");
+                }
 
             }
 
