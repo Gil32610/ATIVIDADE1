@@ -57,6 +57,7 @@ public class LSEAluno {
                     aux = aux.getProx();
                 }
                 aux.setProx(novo);
+                System.out.println("Aluno inserido!");
 
             }
         }
@@ -73,10 +74,11 @@ public class LSEAluno {
             novo = new LSENode(al);
             if (this.isEmpty()) {
                 this.primeiro = novo;
-
+                System.out.println("Aluno inserido!");
             } else {
                 novo.setProx(this.primeiro);
                 this.primeiro = novo;
+                System.out.println("Aluno inserido!");
             }
         }
 
@@ -173,6 +175,7 @@ public class LSEAluno {
                 this.primeiro = null;
                 aux = aux.getProx();
                 this.primeiro = aux;
+                System.out.println("Aluno removido!");
             } else {
                 while (aux != null) {
                     if (aux.getInfo().compareTo(al) == 0) {
@@ -200,7 +203,14 @@ public class LSEAluno {
         LSENode aux = this.primeiro;
         copy.primeiro = aux;
         while (aux != null) {
-            copy.inserirAluno(aux.getInfo());
+            String matr = new String(aux.getInfo().getMatricula());
+            String nome = new String(aux.getInfo().getNome());
+            double media = aux.getInfo().getMedia();
+            int faltas = aux.getInfo().getFaltas();
+            Aluno al = new Aluno(matr, nome);
+            al.setFaltas(faltas);
+            al.setMedia(media);
+            copy.inserirAluno(al);
             aux = aux.getProx();
         }
 
