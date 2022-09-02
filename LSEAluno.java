@@ -204,7 +204,6 @@ public class LSEAluno {
         }
 
         LSENode aux = this.primeiro;
-        copy.primeiro = aux;
         while (aux != null) {
             String matr = new String(aux.getInfo().getMatricula());
             String nome = new String(aux.getInfo().getNome());
