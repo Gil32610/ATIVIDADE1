@@ -2,6 +2,8 @@ package ATIVIDADE1;
 
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthStyleFactory;
+
 public class LSEAluno {
     private LSENode primeiro;
 
@@ -164,18 +166,21 @@ public class LSEAluno {
 
         if (this.isEmpty()) {
             System.out.println("Lista vazia!");
-        } else if (this.primeiro.getProx() == null && this.primeiro.getInfo().compareTo(al) == 0) {
-            this.primeiro = null;
-            System.out.println("Aluno removido!");
+        } else if (this.primeiro.getProx() == null) {
+            if(this.primeiro.getInfo().compareTo(al) == 0){
+                 this.primeiro = null;
+            System.out.println("Aluno removido!!!!!!!!!!!!");
+            }
+            else{
+                System.out.println("Aluno não encontrado!!!!!!!!!!!!!");
+            }
+           
         } else {
             LSENode aux = this.primeiro;
             LSENode anterior = aux;
             if (this.primeiro.getInfo().compareTo(al) == 0) {
-                aux = this.primeiro;
-                this.primeiro = null;
-                aux = aux.getProx();
-                this.primeiro = aux;
-                System.out.println("Aluno removido!");
+              this.primeiro = this.primeiro.getProx();
+                System.out.println("Aluno removido!2");
             } else {
                 while (aux != null) {
                     if (aux.getInfo().compareTo(al) == 0) {
