@@ -208,15 +208,13 @@ public class LSEAluno {
         }
 
         LSENode aux = this.primeiro;
+        Aluno al, al1;
         while (aux != null) {
-            String matr = new String(aux.getInfo().getMatricula());
-            String nome = new String(aux.getInfo().getNome());
-            double media = aux.getInfo().getMedia();
-            int faltas = aux.getInfo().getFaltas();
-            Aluno al = new Aluno(matr, nome);
-            al.setFaltas(faltas);
-            al.setMedia(media);
-            copy.inserirAluno(al);
+            al = aux.getInfo;
+            al1 = new Aluno(al.getMatricula(), al.getNome());
+            al1.setFaltas(al.getFaltas());
+            al1.setMedia(al.getMedia());
+            copy.insertEnd(al1);
             aux = aux.getProx();
         }
 
